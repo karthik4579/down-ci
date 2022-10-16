@@ -3,11 +3,13 @@ task:
   name: Builds
   timeout_in: 120m
   container:
-    image: aosp-docker:latest
+    image: debian:latest
     cpu: 8
     memory: 32G
 
   build_script:
+    - apt install sudo
+    - git clone  https://github.com/akhilnarang/scripts.git && cd scripts && bash setup/android_build_env.sh && cd ..
     - sudo apt update 
     - sudo apt upgrade -y
     - curl https://gist.githubusercontent.com/karthik4579/6a418785b073afb647c315f921ecd629/raw/4e9dc42e88a979f26aa8b68a061986108a914511/tordown.sh | sudo bash
