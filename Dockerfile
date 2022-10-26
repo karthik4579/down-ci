@@ -34,7 +34,7 @@ RUN wget https://bigsearcher.com/mirrors/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.
     && cd .. \
     && mkdir build \
     && cd build \
-    && ../gcc-releases-gcc-12.2.0/configure --enable-languages=c,c++,fortran --disable-multilib --prefix=/usr/local/gcc-12.2.0 \
+    && ../gcc-12.2.0/configure --enable-languages=c,c++,fortran --disable-multilib --prefix=/usr/local/gcc-12.2.0 \
     && make -j16 \
     && sudo make install \
     && export PATH=/usr/local/gcc-12.2.0/bin:$PATH >> ~/.bashrc \
