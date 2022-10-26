@@ -44,3 +44,5 @@ RUN wget https://bigsearcher.com/mirrors/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.
     && export CXX=/usr/local/gcc-12.2.0/bin/g++-12.2 >> ~/.bashrc \
     && export FC=/usr/local/gcc-12.2.0/bin/gfortran-12.2 >> ~/.bashrc \
     && source ~/.bashrc
+
+ENTRYPOINT ["/bin/bash"]
