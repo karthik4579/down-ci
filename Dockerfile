@@ -34,9 +34,9 @@ RUN wget https://bigsearcher.com/mirrors/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.
     && cd .. \
     && mkdir build \
     && cd build \
-    && ../gcc-releases-gcc-12.2.0/configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --prefix=/usr/local/gcc-12.2.0 --enable-checking=release --enable-languages=c,c++,fortran --disable-multilib --program-suffix=-12.2 \
+    && ../gcc-releases-gcc-12.2.0/configure --enable-languages=c,c++,fortran --disable-multilib --prefix=/usr/local/gcc-12.2.0 \
     && make -j16 \
-    && sudo make install-strip \
+    && sudo make install \
     && export PATH=/usr/local/gcc-12.2.0/bin:$PATH >> ~/.bashrc \
     && export LD_LIBRARY_PATH=/usr/local/gcc-12.2.0/lib64:$LD_LIBRARY_PATH >> ~/.bashrc \
     && source ~/.bashrc \
