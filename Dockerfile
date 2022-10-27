@@ -36,13 +36,6 @@ RUN wget https://bigsearcher.com/mirrors/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.
     && cd build \
     && ../gcc-12.2.0/configure --enable-languages=c,c++,fortran --disable-multilib --prefix=/usr/local/gcc-12.2.0 \
     && make -j16 \
-    && sudo make install \
-    && export PATH=/usr/local/gcc-12.2.0/bin:$PATH >> ~/.bashrc \
-    && export LD_LIBRARY_PATH=/usr/local/gcc-12.2.0/lib64:$LD_LIBRARY_PATH >> ~/.bashrc \
-    && source ~/.bashrc \
-    && export CC=/usr/local/gcc-12.2.0/bin/gcc-12.2 >> ~/.bashrc \
-    && export CXX=/usr/local/gcc-12.2.0/bin/g++-12.2 >> ~/.bashrc \
-    && export FC=/usr/local/gcc-12.2.0/bin/gfortran-12.2 >> ~/.bashrc \
-    && source ~/.bashrc
+    && sudo make install
 
 ENTRYPOINT ["/bin/bash"]
