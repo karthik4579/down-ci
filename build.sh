@@ -63,7 +63,6 @@ repo sync -c -j32
 git clone https://github.com/karthik4579/device_xiaomi_onclite.git -b 13 device/xiaomi/onclite
 git clone https://github.com/karthik4579/vendor_xiaomi_onclite.git -b 13 vendor/xiaomi/onclite
 git clone https://github.com/karthik4579/kernel_xiaomi_onclite.git -b 12.1 kernel/xiaomi/onclite
-#rm -rf $1/prebuilts/clang/host/linux-x86/clang-proton && git clone https://github.com/kdrag0n/proton-clang.git $1/prebuilts/clang/host/linux-x86/clang-proton
 }
 
 
