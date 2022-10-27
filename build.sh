@@ -42,6 +42,13 @@ git config --global user.name "karthik4579"
 git config --global user.email karthiknair021@gmail.com
 git config --global color.ui false
 git config --global url."https://github.com/".insteadOf git://github.com/
+export PATH=/usr/local/gcc-12.2.0/bin:$PATH >> ~/.bashrc \
+export LD_LIBRARY_PATH=/usr/local/gcc-12.2.0/lib64:$LD_LIBRARY_PATH >> ~/.bashrc \
+source ~/.bashrc \
+export CC=/usr/local/gcc-12.2.0/bin/gcc-12.2 >> ~/.bashrc \
+export CXX=/usr/local/gcc-12.2.0/bin/g++-12.2 >> ~/.bashrc \
+export FC=/usr/local/gcc-12.2.0/bin/gfortran-12.2 >> ~/.bashrc \
+source ~/.bashrc
 cd /usr/src
 ln -sfn linux-headers-2.6.35-28-generic linux
 cd $1
