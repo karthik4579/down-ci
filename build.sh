@@ -3,7 +3,7 @@ uploadcache ()
 {
 cd /tmp
 tar --use-compress-program="pigz -k -$2 " -cf $1.tar.gz $1
-sudo rclone copy --progress --drive-chunk-size=512M ./ccache.tar.gz gdrive:/ccache
+rclone copy --config=/tmp/rclone.conf --progress --drive-chunk-size=512M ./ccache.tar.gz gdrive:/ccache
 }
 
 
@@ -11,7 +11,7 @@ emptycheck ()
 {
 unset out
 unset check
-check=$(rclone size gdrive:/ccache) 
+check=$(rclone size --config=/tmp/rclone.conf gdrive:/ccache) 
 echo $check > result.txt
 grep -w "(0 Byte)" result.txt >> /dev/null 
 out=$? #if 0 then folder is empty or else the folder is not empty
@@ -22,14 +22,14 @@ rm -rf result.txt
 
 downloadccache ()
 {
-rclone copy gdrive:ccache.tar.gz /tmp
+rclone copy --config=/tmp/rclone.conf gdrive:ccache.tar.gz /tmp
 curl -s --data "text=Downloading of CCACHE has finished" --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
 }
 
 
 uploadrom ()
 {
-rclone copy --progress /out/target/product/onclite/*zip gdrive:/roms
+rclone copy --config=/tmp/rclone.conf --progress /out/target/product/onclite/*zip gdrive:/roms
 }
 
 
@@ -37,7 +37,7 @@ setup ()
 {
 mkdir $2
 sudo apt update && sudo apt upgrade -y
-echo "$TDRIVE" >> /root/.config/rclone/rclone.conf
+echo "$TDRIVE" >> /tmp/rclone.conf
 git config --global user.name "karthik4579"
 git config --global user.email karthiknair021@gmail.com
 git config --global color.ui false
@@ -151,7 +151,7 @@ if [[ $result -eq 0 ]]
 then
 time uploadcache ccache 1
 else
-sudo rclone delete gdrive:/ccache/ccache.tar.gz
+rclone delete --config=/tmp/rclone.conf gdrive:/ccache/ccache.tar.gz
 time uploadcache ccache 1
 fi
 
