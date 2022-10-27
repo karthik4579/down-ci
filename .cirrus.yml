@@ -7,5 +7,5 @@ task:
   script: 
    - echo "Hello World from macOS!"
    - brew install --cask docker
-   - open --hide --background -a Docker
+   - open --hide --background -a /Applications/Docker.app
    - docker info
