@@ -1,5 +1,5 @@
 macos_instance:
-  image: macos-monterey-base:latest
+  image:  ghcr.io/cirruslabs/macos-monterey-base:latest
   cpu: 12
   memory: 24G
 
