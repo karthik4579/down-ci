@@ -4,6 +4,7 @@ macos_instance:
 task:
   script: 
    - echo "Hello World from macOS!"
-   - brew cask install docker
+   - softwareupdate --install-rosetta
+   - brew install --cask docker
    - open --hide --background -a docker
    - docker info
