@@ -58,11 +58,9 @@ cd $1
 clone ()
 {
 cd $1
-repo init -q --no-repo-verify --depth=1 -u $2 -b $3 -g default,-mips,-darwin,-notdefault
+repo init -q --no-repo-verify --depth=1 --partial-clone --clone-filter=blob:limit=10M -u $2 -b $3 -g default,-mips,-darwin,-notdefault
 repo sync -c -j32
-git clone https://github.com/karthik4579/device_xiaomi_onclite.git -b 13 device/xiaomi/onclite
-git clone https://github.com/karthik4579/vendor_xiaomi_onclite.git -b 13 vendor/xiaomi/onclite
-git clone https://github.com/karthik4579/kernel_xiaomi_onclite.git -b 12.1 kernel/xiaomi/onclite
+git clone https://github.com/karthik4579/local_manifests.git --depth 1 -b 13 .repo/local_manifests
 }
 
 
