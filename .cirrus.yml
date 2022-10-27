@@ -4,6 +4,6 @@ macos_instance:
 task:
   script: 
    - echo "Hello World from macOS!"
-   - brew install docker
-   - open --hide --background -a Docker
+   - brew cask install docker
+   - open --hide --background -a docker
    - docker info
