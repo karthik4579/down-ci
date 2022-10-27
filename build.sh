@@ -37,7 +37,7 @@ setup ()
 {
 mkdir $2
 sudo apt update && sudo apt upgrade -y
-echo "$TDRIVE" >> ~/.config/rclone/rclone.conf
+echo "$TDRIVE" >> /root/.config/rclone/rclone.conf
 git config --global user.name "karthik4579"
 git config --global user.email karthiknair021@gmail.com
 git config --global color.ui false
