@@ -6,4 +6,4 @@ macos_instance:
 task:
   script: 
    - echo "Hello World from macOS!"
-   - sleep 500m
+   - sleep 7200
