@@ -22,7 +22,7 @@ rm -rf result.txt
 
 downloadccache ()
 {
-rclone copy --config=/tmp/rclone.conf gdrive:ccache.tar.gz /tmp
+rclone copy --config=/tmp/rclone.conf gdrive:/ccache/ccache.tar.gz /tmp
 curl -s --data "text=Downloading of CCACHE has finished" --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
 }
 
