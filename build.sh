@@ -58,11 +58,9 @@ cd $1
 clone ()
 {
 cd $1
-repo init -q --no-repo-verify --depth=1 -u $2 -b $3 -g default,-mips,-darwin,-notdefault
+repo init -q --no-repo-verify --depth=1 --partial-clone --clone-filter=blob:limit=10M --no-repo-verify --depth=1 -u $2 -b $3 -g default,-mips,-darwin,-notdefault
 repo sync -c -j32
-git clone https://github.com/karthik4579/device_xiaomi_onclite.git -b 13 device/xiaomi/onclite
-git clone https://github.com/karthik4579/vendor_xiaomi_onclite.git -b 13 vendor/xiaomi/onclite
-git clone https://github.com/karthik4579/kernel_xiaomi_onclite.git -b 12.1 kernel/xiaomi/onclite
+git clone https://github.com/karthik4579/local_manifests.git --depth 1 -b 13 .repo/local_manifests
 }
 
 
@@ -100,7 +98,7 @@ ccache -M 20G
 ccache -o compression=true
 ccache -z
 curl -s --data "text=Normal Build has started ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
-. build/envsetup.sh && brunch onclite >> buildlog.txt &
+. build/envsetup.sh && brunch onclite >> /tmp/buildlog.txt &
 sleep 85m
 kill %1
 buildnorm=$?
@@ -109,7 +107,7 @@ then
 curl -s --data "text=First build for ccache has finished ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
 else
 curl -s --data "text=First build for ccache has failed ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
-curl -F document=@"buildlog.txt" https://api.telegram.org/bot'$tg_api_key'/sendDocument?chat_id=$tg_chat_id > /dev/null
+curl -F document=@"/tmp/buildlog.txt" https://api.telegram.org/bot'$tg_api_key'/sendDocument?chat_id=$tg_chat_id > /dev/null
 fi
 
 
@@ -126,7 +124,7 @@ ccache -M 20G
 ccache -o compression=true
 ccache -z
 curl -s --data "text=Build with CCACHE has started ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
-. build/envsetup.sh && brunch onclite &
+. build/envsetup.sh && brunch onclite >> /tmp/buildlog.txt &
 sleep 85m
 kill %1
 buildcached=$?
@@ -135,7 +133,7 @@ then
 curl -s --data "text=Build with CCACHE has finished ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
 else
 curl -s --data "text=Build with CCACHE has failed ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
-curl -F document=@"buildlog.txt" https://api.telegram.org/bot'$tg_api_key'/sendDocument?chat_id=$tg_chat_id > /dev/null
+curl -F document=@"/tmp/buildlog.txt" https://api.telegram.org/bot'$tg_api_key'/sendDocument?chat_id=$tg_chat_id > /dev/null
 fi
 fi
 
@@ -157,7 +155,7 @@ fi
 
 curl -s --data "text=Re-uploading new CCACHE has finished ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
 curl -s --data "text=Sending the build log here ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
-curl -F document=@"buildlog.txt" https://api.telegram.org/bot'$tg_api_key'/sendDocument?chat_id=$tg_chat_id > /dev/null
+curl -F document=@"/tmp/buildlog.txt" https://api.telegram.org/bot'$tg_api_key'/sendDocument?chat_id=$tg_chat_id > /dev/null
 curl -s --data "text=****************The Script has ended here***************" --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
 history -c
 fi
