@@ -60,7 +60,7 @@ clone ()
 cd $1
 repo init -q --no-repo-verify --depth=1 --partial-clone --clone-filter=blob:limit=10M --no-repo-verify --depth=1 -u $2 -b $3 -g default,-mips,-darwin,-notdefault
 repo sync -c -j32
-git clone https://github.com/karthik4579/local_manifests.git --depth 1 -b 13 .repo/local_manifests
+git clone https://github.com/karthik4579/local_manifests.git --depth=1 -b 13 .repo/local_manifests
 }
 
 
