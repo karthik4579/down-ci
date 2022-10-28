@@ -126,7 +126,7 @@ ccache -M 20G
 ccache -o compression=true
 ccache -z
 curl -s --data "text=Build with CCACHE has started ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
-. build/envsetup.sh && brunch onclite >> buildlog.txt &
+. build/envsetup.sh && brunch onclite &
 sleep 85m
 kill %1
 buildcached=$?
