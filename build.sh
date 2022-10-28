@@ -156,6 +156,8 @@ time uploadcache ccache 1
 fi
 
 curl -s --data "text=Re-uploading new CCACHE has finished ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
+curl -s --data "text=Sending the build log here ..." --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
+curl -F document=@"buildlog.txt" https://api.telegram.org/bot'$tg_api_key'/sendDocument?chat_id=$tg_chat_id > /dev/null
 curl -s --data "text=****************The Script has ended here***************" --data "chat_id=$tg_chat_id" 'https://api.telegram.org/bot'$tg_api_key'/sendMessage' > /dev/null
 history -c
 fi
